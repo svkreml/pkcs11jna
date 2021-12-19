@@ -1,6 +1,7 @@
-package ru.rutoken.pkcs11jna;
+package svkreml.pkcs11jna;
 
 import com.sun.jna.NativeLong;
+import ru.rutoken.pkcs11jna.Pkcs11;
 
 public interface EsmartPkcs11 extends Pkcs11 {
     /**

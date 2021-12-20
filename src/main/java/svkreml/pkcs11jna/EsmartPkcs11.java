@@ -1,6 +1,8 @@
 package svkreml.pkcs11jna;
 
 import com.sun.jna.NativeLong;
+import com.sun.jna.ptr.ByteByReference;
+import com.sun.jna.ptr.NativeLongByReference;
 import ru.rutoken.pkcs11jna.Pkcs11;
 
 /*
@@ -72,14 +74,14 @@ public interface EsmartPkcs11 extends Pkcs11 {
     NativeLong C_ISBC_CreateCSR(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
             Object /*CK_OBJECT_HANDLE*/ publicKey,
-            Object /*CK_CHAR_PTR*/ dn,
+            byte[] /*CK_CHAR_PTR*/ dn,
             NativeLong /*CK_ULONG*/ dnLen,
-            Object /*CK_BYTE_PTR*/ csr,
-            Object /*CK_ULONG_PTR*/ cstLen,
+            byte[] /*CK_BYTE_PTR*/ csr,
+            NativeLongByReference /*CK_ULONG_PTR*/ cstLen,
             Object /*CK_OBJECT_HANDLE*/ privateKey,
-            Object /*CK_CHAR_PTR*/ attrs,
+            byte[] /*CK_CHAR_PTR*/ attrs,
             NativeLong /*CK_ULONG*/ attrsLen,
-            Object /*CK_CHAR_PTR*/ exts,
+            byte[] /*CK_CHAR_PTR*/ exts,
             NativeLong /*CK_ULONG*/ extsLen
     );
 
@@ -111,13 +113,13 @@ public interface EsmartPkcs11 extends Pkcs11 {
      */
     NativeLong C_ISBC_pkcs7Sign(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
-            Object /*CK_BYTE_PTR*/ pData,
+            byte[] /*CK_BYTE_PTR*/ pData,
             NativeLong /*CK_ULONG*/ ulDataLen,
             Object /*CK_OBJECT_HANDLE*/ hSignCertificate,
-            Object /*CK_BYTE_PTR*/ pOut,
-            Object /*CK_ULONG_PTR*/ pulOutLen,
+            byte[] /*CK_BYTE_PTR*/ pOut,
+            NativeLongByReference /*CK_ULONG_PTR*/ pulOutLen,
             Object /*CK_OBJECT_HANDLE*/ hPrivateKey,
-            Object /*CK_OBJECT_HANDLE_PTR*/ hCertificates,
+            Object[] /*CK_OBJECT_HANDLE_PTR*/ hCertificates,
             NativeLong /*CK_ULONG*/ ulCertificateLen,
             NativeLong /*CK_ULONG*/ ulFlags
     );
@@ -139,9 +141,9 @@ public interface EsmartPkcs11 extends Pkcs11 {
      * функцию C_ISBC_pkcs7VerifyEx, включающую дополнительные возможности.
      */
     NativeLong C_ISBC_pkcs7Verify(
-            Object /*CK_BYTE_PTR*/ pPkcs7,
+            byte[] /*CK_BYTE_PTR*/ pPkcs7,
             NativeLong /*CK_ULONG*/ ulPkcs7Len,
-            Object /*CK_BYTE_PTR*/ pData,
+            byte[] /*CK_BYTE_PTR*/ pData,
             NativeLong /*CK_ULONG*/ ulDataLen
     );
 
@@ -173,12 +175,12 @@ public interface EsmartPkcs11 extends Pkcs11 {
     NativeLong C_ISBC_CertVerify(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
             Object /*CK_OBJECT_HANDLE*/ certificateToVerify,
-            Object /*CK_OBJECT_HANDLE_PTR*/ trustedCertificates,
+            Object[] /*CK_OBJECT_HANDLE_PTR*/ trustedCertificates,
             NativeLong /*CK_ULONG*/ trustedCertificatesLength,
-            Object /*CK_OBJECT_HANDLE_PTR*/ certificateChain,
+            Object[] /*CK_OBJECT_HANDLE_PTR*/ certificateChain,
             NativeLong /*CK_ULONG*/ certificateChainLength,
-            Object[] /*CK_BYTE_PTR*/ crls,
-            Object /*CK_ULONG_PTR*/ crlsLengths,
+            byte[] /*CK_BYTE_PTR*/ crls,
+            NativeLong[] /*CK_ULONG_PTR*/ crlsLengths,
             NativeLong /*CK_ULONG*/ crlsLength
     );
 
@@ -220,14 +222,14 @@ public interface EsmartPkcs11 extends Pkcs11 {
      */
     NativeLong C_ISBC_pkcs7VerifyEx(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
-            Object /*CK_BYTE_PTR*/ pPkcs7,
+            byte[] /*CK_BYTE_PTR*/ pPkcs7,
             NativeLong /*CK_ULONG*/ ulPkcs7Len,
-            Object /*CK_BYTE_PTR*/ pData,
+            byte[] /*CK_BYTE_PTR*/ pData,
             NativeLong /*CK_ULONG*/ ulDataLen,
-            Object[] /*CK_BYTE_PTR*/ crls,
-            Object /*CK_ULONG_PTR*/ crlsLengths,
+            byte[] /*CK_BYTE_PTR*/ crls,
+            NativeLongByReference /*CK_ULONG_PTR*/ crlsLengths,
             NativeLong /*CK_ULONG*/ crlsLength,
-            Object /*CK_BBOOL*/ ignoreCrlCheck
+            boolean /*CK_BBOOL*/ ignoreCrlCheck
     );
 
 
@@ -375,23 +377,23 @@ public interface EsmartPkcs11 extends Pkcs11 {
 
     NativeLong C_ISBC_GetProfile(
             NativeLong /*CK_SLOT_ID */ slotID,
-            Object /*CK_BYTE * */  pbVerMsb,
-            Object /*CK_BYTE * */  pbVerLsb,
-            Object /*CK_BYTE * */  pbProfileId,
-            Object /*CK_BYTE * */  pbSoPinRc,
-            Object /*CK_BYTE * */  pbUserPinRc,
-            Object /*CK_BYTE * */  pbDataFileSize,
-            Object /*CK_BYTE * */  pbDataFileCount,
-            Object /*CK_BYTE * */  pbCertFileSize,
-            Object /*CK_BYTE * */  pbCertFileCount,
-            Object /*CK_BYTE * */  pbPubFileSize,
-            Object /*CK_BYTE * */  pbPubFileCount,
-            Object /*CK_BYTE * */  pbPrFileSize,
-            Object /*CK_BYTE * */  pbPrFileCount,
-            Object /*CK_BYTE * */  pbSKFileSize,
-            Object /*CK_BYTE * */  pbSKFileCount,
-            Object /*CK_BYTE * */  pbSM,
-            Object /*CK_BYTE * */  pbConf
+            ByteByReference /*CK_BYTE * */ pbVerMsb,
+            ByteByReference /*CK_BYTE * */ pbVerLsb,
+            ByteByReference /*CK_BYTE * */ pbProfileId,
+            ByteByReference /*CK_BYTE * */ pbSoPinRc,
+            ByteByReference /*CK_BYTE * */ pbUserPinRc,
+            ByteByReference /*CK_BYTE * */ pbDataFileSize,
+            ByteByReference /*CK_BYTE * */ pbDataFileCount,
+            ByteByReference /*CK_BYTE * */ pbCertFileSize,
+            ByteByReference /*CK_BYTE * */ pbCertFileCount,
+            ByteByReference /*CK_BYTE * */ pbPubFileSize,
+            ByteByReference /*CK_BYTE * */ pbPubFileCount,
+            ByteByReference /*CK_BYTE * */ pbPrFileSize,
+            ByteByReference /*CK_BYTE * */ pbPrFileCount,
+            ByteByReference /*CK_BYTE * */ pbSKFileSize,
+            ByteByReference /*CK_BYTE * */ pbSKFileCount,
+            ByteByReference /*CK_BYTE * */ pbSM,
+            ByteByReference /*CK_BYTE * */ pbConf
     );
 
     /**
@@ -418,9 +420,9 @@ public interface EsmartPkcs11 extends Pkcs11 {
 
     NativeLong C_ISBC_GetCryptoProInfo(
             NativeLong /*CK_SLOT_ID */ slotID,
-            Object /*CK_ULONG * */ pulCount,
-            Object /*CK_BYTE *  */ pbNames,
-            Object /*CK_ULONG * */ pulNamesLen
+            NativeLongByReference /*CK_ULONG * */ pulCount,
+            byte[] /*CK_BYTE * */ pbNames,
+            NativeLongByReference /*CK_ULONG * */ pulNamesLen
     );
 
     /**
@@ -444,10 +446,10 @@ public interface EsmartPkcs11 extends Pkcs11 {
      */
     NativeLong C_ISBC_GetCryptoProCertificate(
             NativeLong /*CK_SLOT_ID */ slotID,
-            Object /*CK_BYTE *  */ pbCertName,
-            NativeLong /*CK_ULONG   */ ulNameLen,
-            Object /*CK_BYTE *  */ pbCert,
-            Object /*CK_ULONG * */  pulCertLen
+            byte[] /*CK_BYTE * */ pbCertName,
+            NativeLong /*CK_ULONG*/ ulNameLen,
+            byte[] /*CK_BYTE * */ pbCert,
+            NativeLongByReference /*CK_ULONG * */  pulCertLen
     );
 
     /**
@@ -465,8 +467,8 @@ public interface EsmartPkcs11 extends Pkcs11 {
      */
 
     NativeLong C_ISBC_CheckSM(
-            NativeLong /*CK_SLOT_ID */ slotID,
-            Object /*CK_BYTE *  */ pbRes
+            NativeLong /*CK_SLOT_ID*/ slotID,
+            ByteByReference /*CK_BYTE * */ pbRes
     );
 
     /**
@@ -495,7 +497,7 @@ public interface EsmartPkcs11 extends Pkcs11 {
     NativeLong C_ISBC_ScribbleRead(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
             byte /*CK_BYTE*/ type,
-            Object /*CK_BYTE_PTR*/ pData,
-            Object /*CK_ULONG_PTR*/ pulDataLen
+            byte[] /*CK_BYTE_PTR*/ pData,
+            NativeLongByReference /*CK_ULONG_PTR*/ pulDataLen
     );
 }

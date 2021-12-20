@@ -15,29 +15,30 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
+@SuppressWarnings("unused")
 public interface RtPkcs11 extends Pkcs11 {
 
     /* C_EX_GetFunctionListExtended returns the extended function list. */
     NativeLong C_EX_GetFunctionListExtended
     (
-        Pointer[]   ppFunctionList /* receives pointer to extended function list */
+            Pointer[] ppFunctionList /* receives pointer to extended function list */
     );
 
     /* C_EX_InitToken initializes a token with full format. */
     NativeLong C_EX_InitToken
     (
-        NativeLong            slotID,    /* ID of the token's slot */
-        byte[]                pPin,      /* the SO's initial PIN */
-        NativeLong            ulPinLen,  /* length in bytes of the PIN */
-        CK_RUTOKEN_INIT_PARAM pInitInfo  /* init parameters */
+            NativeLong slotID,    /* ID of the token's slot */
+            byte[] pPin,      /* the SO's initial PIN */
+            NativeLong ulPinLen,  /* length in bytes of the PIN */
+            CK_RUTOKEN_INIT_PARAM pInitInfo  /* init parameters */
     );
 
     /* C_EX_GetTokenInfoExtended obtains information about the particular
-    * token in the system. */
+     * token in the system. */
     NativeLong C_EX_GetTokenInfoExtended
     (
-        NativeLong              slotID,  /* ID of the token's slot */
-        CK_TOKEN_INFO_EXTENDED  pInfo    /* receives the token information */
+            NativeLong slotID,  /* ID of the token's slot */
+            CK_TOKEN_INFO_EXTENDED pInfo    /* receives the token information */
     );
 
     /* C_EX_UnblockUserPIN unblocks the blocked User's PIN.
@@ -45,7 +46,7 @@ public interface RtPkcs11 extends Pkcs11 {
      * C_InitPIN */
     NativeLong C_EX_UnblockUserPIN
     (
-        NativeLong hSession   /* the session's handle */
+            NativeLong hSession   /* the session's handle */
     );
 
 
@@ -55,9 +56,9 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_SetTokenName
     (
-        NativeLong hSession,  /* the session's handle */
-        byte[]     pLabel,    /* the new label */
-        NativeLong ulLabelLen /* length of the new label */
+            NativeLong hSession,  /* the session's handle */
+            byte[] pLabel,    /* the new label */
+            NativeLong ulLabelLen /* length of the new label */
     );
 
     /* C_EX_SetLicense modifies the token license if User or SO
@@ -66,10 +67,10 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_SetLicense
     (
-        NativeLong hSession,     /* the session's handle */
-        NativeLong ulLicenseNum, /* the number of the new license, can only be 1 or 2 */
-        byte[]     pLicense,     /* byte buffer with the data of new license */
-        NativeLong ulLicenseLen  /* length of the new license, can only be 72 */
+            NativeLong hSession,     /* the session's handle */
+            NativeLong ulLicenseNum, /* the number of the new license, can only be 1 or 2 */
+            byte[] pLicense,     /* byte buffer with the data of new license */
+            NativeLong ulLicenseLen  /* length of the new license, can only be 72 */
     );
 
 
@@ -80,10 +81,10 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_GetLicense
     (
-        NativeLong            hSession,     /* the session's handle */
-        NativeLong            ulLicenseNum, /* the number of the license, can only be 1 or 2 */
-        byte[]                pLicense,     /* receives the license */
-        NativeLongByReference pulLicenseLen /* length of the license */
+            NativeLong hSession,     /* the session's handle */
+            NativeLong ulLicenseNum, /* the number of the license, can only be 1 or 2 */
+            byte[] pLicense,     /* receives the license */
+            NativeLongByReference pulLicenseLen /* length of the license */
     );
 
 
@@ -93,10 +94,10 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_GetCertificateInfoText
     (
-        NativeLong            hSession,  /* the session's handle */
-        NativeLong            hCert,     /* the object's handle */
-        Pointer               pInfo,     /* returns address of allocated buffer with text information */
-        NativeLongByReference pulInfoLen /* length of the allocated buffer */
+            NativeLong hSession,  /* the session's handle */
+            NativeLong hCert,     /* the object's handle */
+            Pointer pInfo,     /* returns address of allocated buffer with text information */
+            NativeLongByReference pulInfoLen /* length of the allocated buffer */
     );
 
     /* C_EX_PKCS7Sign signs data and packs it to PKCS#7 format
@@ -105,28 +106,28 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_PKCS7Sign
     (
-        NativeLong            hSession,
-        byte[]                pData,
-        NativeLong            ulDataLen,
-        NativeLong            hCert,
-        Pointer               ppEnvelope,
-        NativeLongByReference pEnvelopeLen,
-        NativeLong            hPrivKey,
-        NativeLong[]          phCertificates,
-        NativeLong            ulCertificatesLen,
-        NativeLong            flags
+            NativeLong hSession,
+            byte[] pData,
+            NativeLong ulDataLen,
+            NativeLong hCert,
+            Pointer ppEnvelope,
+            NativeLongByReference pEnvelopeLen,
+            NativeLong hPrivKey,
+            NativeLong[] phCertificates,
+            NativeLong ulCertificatesLen,
+            NativeLong flags
     );
 
     /* C_EX_PKCS7VerifyInit initializes pkcs7 verify operation
      */
     NativeLong C_EX_PKCS7VerifyInit
     (
-        NativeLong            hSession,
-        Pointer               pCms, // CK_BYTE_PTR
-        NativeLong            ulCmsLen,
-        CK_VENDOR_X509_STORE  pStore, // CK_VENDOR_X509_STORE_PTR
-        NativeLong            ckMode,
-        NativeLong            flags
+            NativeLong hSession,
+            Pointer pCms, // CK_BYTE_PTR
+            NativeLong ulCmsLen,
+            CK_VENDOR_X509_STORE pStore, // CK_VENDOR_X509_STORE_PTR
+            NativeLong ckMode,
+            NativeLong flags
     );
 
     /* C_EX_PKCS7Verify finishes pkcs7 verify operation and return
@@ -134,11 +135,11 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_PKCS7Verify
     (
-        NativeLong            hSession,
-        PointerByReference    ppData, // CK_BYTE_PTR_PTR
-        NativeLongByReference pulDataLen,
-        PointerByReference    ppSignerCertificates, // CK_VENDOR_BUFFER_PTR_PTR
-        NativeLongByReference pulSignerCertificatesCount
+            NativeLong hSession,
+            PointerByReference ppData, // CK_BYTE_PTR_PTR
+            NativeLongByReference pulDataLen,
+            PointerByReference ppSignerCertificates, // CK_VENDOR_BUFFER_PTR_PTR
+            NativeLongByReference pulSignerCertificatesCount
     );
 
 
@@ -148,17 +149,17 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_CreateCSR
     (
-        NativeLong             hSession,
-        NativeLong             hPublicKey,
-        String[]               dn,
-        NativeLong             dnLength,
-        Pointer                pCsr,
-        NativeLongByReference  pulCsrLength,
-        NativeLong             hPrivKey,
-        NativeLong[]           pAttributes,
-        NativeLong             ulAttributesLength,
-        String[]               pExtensions,
-        NativeLong             ulExtensionsLength
+            NativeLong hSession,
+            NativeLong hPublicKey,
+            String[] dn,
+            NativeLong dnLength,
+            Pointer pCsr,
+            NativeLongByReference pulCsrLength,
+            NativeLong hPrivKey,
+            NativeLong[] pAttributes,
+            NativeLong ulAttributesLength,
+            String[] pExtensions,
+            NativeLong ulExtensionsLength
     );
 
 
@@ -166,7 +167,7 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_FreeBuffer
     (
-        Pointer pBuffer /* pointer to the buffer */
+            Pointer pBuffer /* pointer to the buffer */
     );
 
 
@@ -174,9 +175,9 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_GetTokenName
     (
-        NativeLong            hSession,   /* the session's handle */
-        byte[]                pLabel,     /* byte buffer for label */
-        NativeLongByReference pulLabelLen /* length of the label */
+            NativeLong hSession,   /* the session's handle */
+            byte[] pLabel,     /* byte buffer for label */
+            NativeLongByReference pulLabelLen /* length of the label */
     );
 
 
@@ -184,47 +185,47 @@ public interface RtPkcs11 extends Pkcs11 {
      */
     NativeLong C_EX_SetLocalPIN
     (
-        NativeLong slotID,           /* ID of the token's slot */
-        byte[]     pUserPin,         /* the current User PIN */
-        NativeLong ulUserPinLen,     /* length of current User PIN */
-        byte[]     pNewLocalPin,     /* the new local PIN */
-        NativeLong ulNewLocalPinLen, /* length of the new local PIN */
-        NativeLong ulLocalID         /* ID of the local PIN */
+            NativeLong slotID,           /* ID of the token's slot */
+            byte[] pUserPin,         /* the current User PIN */
+            NativeLong ulUserPinLen,     /* length of current User PIN */
+            byte[] pNewLocalPin,     /* the new local PIN */
+            NativeLong ulNewLocalPinLen, /* length of the new local PIN */
+            NativeLong ulLocalID         /* ID of the local PIN */
     );
 
 
     /* C_EX_LoadActivationKey */
     NativeLong C_EX_LoadActivationKey
     (
-        NativeLong hSession, /* the session's handle */
-        byte[]     key,
-        NativeLong keySize
+            NativeLong hSession, /* the session's handle */
+            byte[] key,
+            NativeLong keySize
     );
 
     /* C_EX_SetActivationPassword */
     NativeLong C_EX_SetActivationPassword
     (
-        NativeLong slotID,  /* ID of the token's slot */
-        byte[]     password
+            NativeLong slotID,  /* ID of the token's slot */
+            byte[] password
     );
 
     /* C_EX_GetVolumesInfo */
     NativeLong C_EX_GetVolumesInfo
     (
-        NativeLong                slotID,
-        CK_VOLUME_INFO_EXTENDED[] pInfo,
-        NativeLongByReference     pulInfoCount
+            NativeLong slotID,
+            CK_VOLUME_INFO_EXTENDED[] pInfo,
+            NativeLongByReference pulInfoCount
     );
 
     /* C_EX_ChangeVolumeAttribute */
     NativeLong C_EX_ChangeVolumeAttributes
     (
-        NativeLong slotId,
-        NativeLong userType,
-        byte[]     pPin,
-        NativeLong upPinLen,
-        NativeLong idVolume,
-        NativeLong newAccessMode,
-        byte       bPermanent
+            NativeLong slotId,
+            NativeLong userType,
+            byte[] pPin,
+            NativeLong upPinLen,
+            NativeLong idVolume,
+            NativeLong newAccessMode,
+            byte bPermanent
     );
 }

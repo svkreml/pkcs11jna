@@ -52,7 +52,7 @@
 
 package ru.rutoken.pkcs11jna;
 
-/**
+/*
  * @author Karl Scheibelhofer <Karl.Scheibelhofer@iaik.at>
  * @author Martin Schlaeffer <schlaeff@sbox.tugraz.at>
  * @author Aktiv Co. <hotline@rutoken.ru>
@@ -60,7 +60,8 @@ package ru.rutoken.pkcs11jna;
 
 import com.sun.jna.Structure;
 
-@Structure.FieldOrder({ "major", "minor" })
+@SuppressWarnings("unused")
+@Structure.FieldOrder({"major", "minor"})
 public class CK_VERSION extends Pkcs11Structure {
     public byte major; /* integer portion of version number */
     public byte minor; /* 1/100ths portion of version number */

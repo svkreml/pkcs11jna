@@ -11,6 +11,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.PointerByReference;
 
+@SuppressWarnings("unused")
 @Structure.FieldOrder({"CreateMutex", "DestroyMutex", "LockMutex", "UnlockMutex", "flags", "pReserved"})
 public class CK_C_INITIALIZE_ARGS extends Pkcs11Structure {
     public CreateMutexCallback CreateMutex;

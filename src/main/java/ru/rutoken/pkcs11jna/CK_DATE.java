@@ -9,7 +9,8 @@ package ru.rutoken.pkcs11jna;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
-@Structure.FieldOrder({ "year", "month", "day" })
+@SuppressWarnings("unused")
+@Structure.FieldOrder({"year", "month", "day"})
 public class CK_DATE extends Pkcs11Structure {
     public byte[] year = new byte[4];
 
@@ -25,7 +26,7 @@ public class CK_DATE extends Pkcs11Structure {
         read();
     }
 
-    public CK_DATE(byte[] year, byte[] month, byte[] day ) {
+    public CK_DATE(byte[] year, byte[] month, byte[] day) {
         this.year = year;
         this.month = month;
         this.day = day;

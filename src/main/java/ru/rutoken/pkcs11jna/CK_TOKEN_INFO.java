@@ -52,7 +52,7 @@
 
 package ru.rutoken.pkcs11jna;
 
-/**
+/*
  * @author Karl Scheibelhofer <Karl.Scheibelhofer@iaik.at>
  * @author Martin Schlaeffer <schlaeff@sbox.tugraz.at>
  * @author Aktiv Co. <hotline@rutoken.ru>
@@ -61,10 +61,11 @@ package ru.rutoken.pkcs11jna;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Structure;
 
-@Structure.FieldOrder({ "label", "manufacturerID", "model", "serialNumber", "flags", "ulMaxSessionCount",
+@SuppressWarnings("unused")
+@Structure.FieldOrder({"label", "manufacturerID", "model", "serialNumber", "flags", "ulMaxSessionCount",
         "ulSessionCount", "ulMaxRwSessionCount", "ulRwSessionCount", "ulMaxPinLen", "ulMinPinLen",
         "ulTotalPublicMemory", "ulFreePublicMemory", "ulTotalPrivateMemory", "ulFreePrivateMemory",
-        "hardwareVersion", "firmwareVersion", "utcTime" })
+        "hardwareVersion", "firmwareVersion", "utcTime"})
 public class CK_TOKEN_INFO extends Pkcs11Structure {
 
     /*

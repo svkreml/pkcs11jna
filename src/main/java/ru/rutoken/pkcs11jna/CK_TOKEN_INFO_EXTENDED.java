@@ -5,19 +5,20 @@
 
 package ru.rutoken.pkcs11jna;
 
-/**
+/*
  * @author Aktiv Co. <hotline@rutoken.ru>
  */
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Structure;
 
+@SuppressWarnings("unused")
 /* CK_TOKEN_INFO_EXTENDED provides extended information about a token */
-@Structure.FieldOrder({ "ulSizeofThisStructure", "ulTokenType", "ulProtocolNumber", "ulMicrocodeNumber",
+@Structure.FieldOrder({"ulSizeofThisStructure", "ulTokenType", "ulProtocolNumber", "ulMicrocodeNumber",
         "ulOrderNumber", "flags", "ulMaxAdminPinLen", "ulMinAdminPinLen", "ulMaxUserPinLen",
         "ulMinUserPinLen", "ulMaxAdminRetryCount", "ulAdminRetryCountLeft", "ulMaxUserRetryCount",
         "ulUserRetryCountLeft", "serialNumber", "ulTotalMemory", "ulFreeMemory", "ATR", "ulATRLen",
-        "ulTokenClass", "ulBatteryVoltage", "ulBodyColor" })
+        "ulTokenClass", "ulBatteryVoltage", "ulBodyColor"})
 public class CK_TOKEN_INFO_EXTENDED extends Pkcs11Structure {
 
     /*

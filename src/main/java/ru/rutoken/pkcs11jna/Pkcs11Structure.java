@@ -9,7 +9,7 @@ import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
-/**
+/*
  * @author Aktiv Co. <hotline@rutoken.ru>
  */
 

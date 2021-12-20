@@ -5,7 +5,7 @@
 
 package ru.rutoken.pkcs11jna;
 
-/**
+/*
  * @author Aktiv Co. <hotline@rutoken.ru>
  */
 
@@ -13,11 +13,12 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+@SuppressWarnings("unused")
 /* CK_RUTOKEN_INIT_PARAM uses in C_EX_InitToken - extended function
    for token formatting (C_InitToken will format only PKCS#11-objects) */
-@Structure.FieldOrder({ "ulSizeofThisStructure", "UseRepairMode", "pNewAdminPin", "ulNewAdminPinLen",
+@Structure.FieldOrder({"ulSizeofThisStructure", "UseRepairMode", "pNewAdminPin", "ulNewAdminPinLen",
         "pNewUserPin", "ulNewUserPinLen", "ChangeUserPINPolicy", "ulMinAdminPinLen", "ulMinUserPinLen",
-        "ulMaxAdminRetryCount", "ulMaxUserRetryCount", "pTokenLabel", "ulLabelLen", "ulSmMode" })
+        "ulMaxAdminRetryCount", "ulMaxUserRetryCount", "pTokenLabel", "ulLabelLen", "ulSmMode"})
 public class CK_RUTOKEN_INIT_PARAM extends Pkcs11Structure {
 
     /*

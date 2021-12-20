@@ -3,8 +3,9 @@ package ru.rutoken.pkcs11jna;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Structure;
 
-@Structure.FieldOrder({ "pTrustedCertificates", "ulTrustedCertificatesCount", "pCertificates",
-        "ulCertificatesCount", "pCrls", "ulCrlsCount" })
+@SuppressWarnings("unused")
+@Structure.FieldOrder({"pTrustedCertificates", "ulTrustedCertificatesCount", "pCertificates",
+        "ulCertificatesCount", "pCrls", "ulCrlsCount"})
 public class CK_VENDOR_X509_STORE extends Pkcs11Structure {
 
     public CK_VENDOR_BUFFER.ByReference pTrustedCertificates; // CK_VENDOR_BUFFER_PTR

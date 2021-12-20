@@ -6,7 +6,11 @@ import com.sun.jna.ptr.NativeLongByReference;
 import ru.rutoken.pkcs11jna.Pkcs11;
 
 /*
+ * по документации:
  * https://esmart.ru/upload/iblock/0c3/esmart_token_gost_developer_guide.pdf
+ * https://esmart.ru/upload/iblock/765/v6.P11_RusExt_12.pdf
+ *
+ * https://esmart.ru/download/
  */
 @SuppressWarnings("unused")
 public interface EsmartPkcs11 extends Pkcs11 {
@@ -174,10 +178,10 @@ public interface EsmartPkcs11 extends Pkcs11 {
      */
     NativeLong C_ISBC_CertVerify(
             NativeLong /*CK_SESSION_HANDLE*/ hSession,
-            Object /*CK_OBJECT_HANDLE*/ certificateToVerify,
-            Object[] /*CK_OBJECT_HANDLE_PTR*/ trustedCertificates,
+            CKO_CERTIFICATE /*CK_OBJECT_HANDLE*/ certificateToVerify,
+            CKO_CERTIFICATE[] /*CK_OBJECT_HANDLE_PTR*/ trustedCertificates,
             NativeLong /*CK_ULONG*/ trustedCertificatesLength,
-            Object[] /*CK_OBJECT_HANDLE_PTR*/ certificateChain,
+            CKO_CERTIFICATE[] /*CK_OBJECT_HANDLE_PTR*/ certificateChain,
             NativeLong /*CK_ULONG*/ certificateChainLength,
             byte[] /*CK_BYTE_PTR*/ crls,
             NativeLong[] /*CK_ULONG_PTR*/ crlsLengths,
